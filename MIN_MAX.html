@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIN/MAX</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        #parent{
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 8%;
+        }
+        .child{
+            justify-content: space-between;
+        }
+        #min{
+            background-color: red;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+            width: fit-content;
+            padding: 30px;
+        }
+        
+        #max{
+            background-color: green;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+            width: fit-content;
+            padding: 30px;
+        }
+        #score{
+            font-size: 28px;
+            background-color: grey;
+            color: black;
+            width: fit-content;
+            padding: 20px 40px;
+            margin: auto;
+            text-align: center;
+
+
+
+        }
+        .keys{
+            display: grid;
+            gap: 15px;
+            grid-template-columns: repeat(3,1fr);
+            margin: auto;
+            /* margin-left: 42%; */
+            margin-top: 20px;
+            width: 17%;
+        }
+        .keys>button{
+            font-size: 20px;
+            padding: 20px;
+        }
+        #enter{
+            margin-top: 20px;
+            font-size: 30px;
+            padding: 20px;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div id="parent">
+    <div id="min" class="child">100</div>
+    <div id="max" class="child">120</div>
+    </div>
+    <h2 style="margin-right:35% ;">MIN</h2>
+    <h2 style="margin-left:35% ; margin-bottom: 20px;">MAX</h2>
+    <h1>SCORE</h1>
+    <div id="score"></div>
+    <div class="keys">
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>0</button>
+    </div>
+    <button id="enter">ENTER</button>
+</body>
+</html>
+<script>
+    let min=document.getElementById("min");
+    let max=document.getElementById("max");
+    let score=document.querySelector("#score");
+    let key=document.querySelectorAll(".keys > button");
+    let enter=document.getElementById("enter");
+
+    for(let i=0;i<key.length;i++){
+
+        key[i].addEventListener("click",function(){
+
+            score.innerText += key[i].innerText ;
+        })
+    }
+
+    enter.addEventListener("click",function(){
+        if(Number(score.innerText)<Number(min.innerText)){
+            min.innerText = score.innerText;
+        }
+        if(Number(score.innerText)>Number(max.innerText)){
+            max.innerText = score.innerText;
+           
+        }
+        score.innerText="";
+
+    })
+
+</script>
