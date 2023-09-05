@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <title>BMI CALCULATOR</title>
+    <style>
+      body{
+        font-family: 'Poppins';
+      }
+    </style>
+</head>
+<body>
+    <h1>Check your BMI</h1>
+    <p style="font-size: 20px;">Enter your weight and height to check your bmi results</p>
+    <h2>Put your weight in here (KG)</h2>
+    <input type="text" id="input1">
+    <br>
+    <h2>And your height in here (CM)</h2>
+    <input type="text" id="input2">
+    <br>
+    <br>
+    <br>
+    <button id="enter" style="padding: 7px; font-size: 15px;">Calculate BMI</button>
+    <br>
+    <br>
+    <div id="display" style="font-size: 20px;"></div>
+    
+</body>
+</html>
+<script>
+    
+    let enter=document.querySelector("#enter");
+
+    enter.addEventListener("click",function(){
+      let weight = +document.getElementById('input1').value;
+      let height = +document.getElementById('input2').value;
+
+        // if(weight<=0 || height<=0 || isNaN(weight) || isNaN(height))
+        // {
+        //     alert ("Please enter a valid Number");
+        // }
+      height=height/100;
+      let bmi=weight/(height*height);
+        
+      let result = document.getElementById("display");
+
+      if(bmi <= 18.4){
+          result.innerText="Your BMI is"+" "+bmi+" "+"which means you are UnderWeight";
+      }
+      else if(bmi >= 18.5 && bmi<= 24.9){
+        result.innerText="Your BMI is"+" "+bmi+" "+"which means you are NormalWeight";
+      }
+      else if(bmi >= 25 && bmi<= 29.9){
+        result.innerText="Your BMI is"+" "+bmi+" "+"which means you are OverWeight";
+      }
+      else if(bmi >= 30){
+        result.innerText="Your BMI is"+" "+bmi+" "+"which means you are Obese";
+      }
+    });
+</script>
