@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <title>CALULATOR</title>
+    <style>
+        body{
+          font-family: 'Poppins';
+        }
+        #parent{
+            width: 50%;
+        }
+        #display{
+            background-color: grey;
+            color: black;
+            border: 1px solid black;
+            padding: 25px 100px;
+            width: 60px;
+            width: fit-content;
+            margin-left: 380px;
+            margin-top: 40px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .keys{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 10px;
+            width: 15%;
+            margin: auto;
+            margin-left: 50%;
+            margin-top: 30px;
+        }
+        .keys>button{
+            font-size: 20px;
+            padding: 17px;
+        }
+        .operator{
+            display: grid;
+            grid-template-rows: repeat(4,1fr);
+            gap: 10px;
+            justify-content: flex-end;
+            width: 15%;
+            margin-top: -35.5%;
+            margin-left:66%;
+        }
+        .operator>button{
+            font-size: 20px;
+            padding: 17px;
+        }
+        #equal{
+            margin-left:65.5%;
+            font-size: 20px;
+            padding: 17px;
+        }
+
+      </style>
+</head>
+<body>
+    <div id="parent">
+        <div id="display"></div>
+            <div class="keys">
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button>0</button>
+                
+            </div>
+            <div class="operator">
+               
+                <button>+</button>
+                <button>-</button>
+                <button>/</button>
+                <button>*</button>
+            </div>
+            <button id="equal">=</button>
+    </div>
+</body>
+</html>
+<script>
+
+    let key = document.querySelectorAll(".keys > button");
+    let display=document.getElementById("display");
+    let operatorbutton = document.querySelectorAll(" .operator > button");
+    let equal = document.getElementById("equal");
+
+    let firstnumber="";
+    let secondnumber="";
+    IsFirstNumber=true;
+    let operator="";
+
+    equal.addEventListener("click",function(){
+        display.innerText = calculate(firstnumber,secondnumber,operator)
+    })
+
+    for(let i=0;i<key.length;i++){
+
+        key[i].addEventListener("click",function(){
+            if(IsFirstNumber == true){
+            firstnumber += key[i].innerText;
+            display.innerText=firstnumber;
+            }else{
+                secondnumber+=key[i].innerText;
+                display.innerText=secondnumber;
+            }
+        }) 
+    }
+    
+    for(let i=0;i<operatorbutton.length;i++){
+
+        operatorbutton[i].addEventListener("click",function(){
+
+            IsFirstNumber=false;
+            operator = operatorbutton[i].innerText;
+        }) 
+    }
+    function calculate(firstnumber,secondnumber,operator){
+        switch (operator){
+            case "+":
+                return +firstnumber + +secondnumber;
+            case "-":
+                return +firstnumber - +secondnumber;
+            case "*":
+                return +firstnumber * +secondnumber;
+            case "/":
+                return +firstnumber / +secondnumber;        
+        }
+    }
+</script>
